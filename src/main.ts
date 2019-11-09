@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
 
+// @ts-ignore
 new Vue({
   router,
   store,

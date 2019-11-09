@@ -1,12 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-    </v-app-bar>
-
+    <Header />
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -15,11 +9,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Header from './components/Header.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
-
+    Header,
   },
   data: () => ({
     //
