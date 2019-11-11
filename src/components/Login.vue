@@ -1,11 +1,12 @@
 <template>
   <v-container>
-    <v-layout
-      text-center
-      wrap
-    >
-      <h1>Login</h1>
-    </v-layout>
+    <v-row>
+      <v-col cols="6">
+        <v-card>
+          <h3 class="titulo">Login</h3>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -13,7 +14,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'HelloWorld',
+  name: 'Login',
   data: () => ({
 
   }),
