@@ -4,17 +4,21 @@
       <v-col cols="12" md="6" offset-md="3">
         <v-card>
           <h3 class="titulo text-center">Iniciar sesión</h3>
-          <v-text-field
-            v-model="user"
-            label="Usuario"
-            outlined
-            autofocus
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            label="Contraseña"
-            outlined
-          ></v-text-field>
+          <div v-if="validation == 0">
+            <v-text-field
+              v-model="user"
+              label="Usuario"
+              outlined
+              autofocus
+            ></v-text-field>
+          </div>
+          <div v-else-if="validation == 1">
+            <v-text-field
+              v-model="password"
+              label="Contraseña"
+              outlined
+            ></v-text-field>
+          </div>
         </v-card>
       </v-col>
     </v-row>
