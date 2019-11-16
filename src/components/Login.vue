@@ -10,6 +10,7 @@
               label="Usuario"
               outlined
               autofocus
+              @keyup.enter="changePhaseLogin()"
             ></v-text-field>
             <v-row>
               <v-col class="footer-form" cols="10" offset="1">
@@ -44,6 +45,17 @@ export default Vue.extend({
         validation: '',
         user: '',
         password: ''
+    }
+  },
+  methods: {
+    changePhaseLogin: function(userName : string): void {
+        this.$socket.emit('CHECK_USER_NAME', JSON.stringify(userName) :);
+    }
+  },
+// @ts-ignore
+  sockets: {
+    VERIFY_USER_NAME: (data: boolean) => {
+      console.log(data);
     }
   },
 });
