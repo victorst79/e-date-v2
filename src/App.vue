@@ -24,4 +24,9 @@ export default Vue.extend({
 
 <style lang="scss">
 @import "./assets/scss/_variables.scss";
+
+  a {
+    text-decoration: none;
+  }
+
 </style>

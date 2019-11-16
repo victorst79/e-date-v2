@@ -11,6 +11,15 @@
               outlined
               autofocus
             ></v-text-field>
+            <v-row>
+              <v-col class="footer-form" cols="10" offset="1">
+                  <router-link to="/register" class="primary--text font-weight-bold">Crear cuenta</router-link>
+                  <v-btn
+                    :right="true"
+                    color="primary"
+                  >Siguiente</v-btn>
+              </v-col>
+            </v-row>
           </div>
           <div v-else-if="validation == 1">
             <v-text-field
@@ -50,6 +59,12 @@ export default Vue.extend({
   div.v-input {
     width: 80%;
     margin: 0 auto;
+  }
+
+  .footer-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 </style>
