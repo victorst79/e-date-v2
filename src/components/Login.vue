@@ -48,15 +48,18 @@ export default Vue.extend({
     }
   },
   methods: {
-    changePhaseLogin: function(userName : string): void {
-        this.$socket.emit('CHECK_USER_NAME', JSON.stringify(userName) :);
+    changePhaseLogin: function(userName : string = this.user): void {
+      // @ts-ignore
+      this.$axios.get('/getUserName', userName)
+          .then( (response: { data: any; }) => {
+             response.data.find( (element: string) => {
+                 element == userName ? this.validation  = 1 : 0;
+             })
+          });
     }
   },
 // @ts-ignore
   sockets: {
-    VERIFY_USER_NAME: (data: boolean) => {
-      console.log(data);
-    }
   },
 });
 </script>

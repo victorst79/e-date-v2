@@ -6,10 +6,15 @@ import './registerServiceWorker';
 import vuetify from './plugins/vuetify';
 // @ts-ignore
 import VueSocketIO from 'vue-socket.io';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+axios.defaults.baseURL = 'http://localhost:3000';
 
 /* GLOBAL STYLES  */
 import './assets/scss/_variables.scss';
 import './assets/scss/common.scss';
+
+
 
 Vue.use(new VueSocketIO({
   debug: true,
