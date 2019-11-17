@@ -10,6 +10,7 @@
               label="Usuario"
               outlined
               autofocus
+              @keyup.enter="changePhaseLogin()"
             ></v-text-field>
             <v-row>
               <v-col class="footer-form" cols="10" offset="1">
@@ -45,6 +46,20 @@ export default Vue.extend({
         user: '',
         password: ''
     }
+  },
+  methods: {
+    changePhaseLogin: function(userName : string = this.user): void {
+      // @ts-ignore
+      this.$axios.get('/getUserName', userName)
+          .then( (response: { data: any; }) => {
+             response.data.find( (element: string) => {
+                 element == userName ? this.validation  = 1 : 0;
+             })
+          });
+    }
+  },
+// @ts-ignore
+  sockets: {
   },
 });
 </script>

@@ -8,7 +8,7 @@
 // /////////////////////////////////////////////////////////////////////////////////
 
 module.exports = {
-  // this controls whether to abort the test execution when an assertion failed and skip the rest
+  // this controls whether to abort the test execution when an assertion failed and skip the api
   // it's being used in waitFor commands and expect assertions
   abortOnAssertionFailure: true,
 
