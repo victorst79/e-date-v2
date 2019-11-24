@@ -14,8 +14,6 @@ axios.defaults.baseURL = 'http://localhost:3000';
 import './assets/scss/_variables.scss';
 import './assets/scss/common.scss';
 
-
-
 Vue.use(new VueSocketIO({
   debug: true,
   connection: 'http://localhost:3000/',

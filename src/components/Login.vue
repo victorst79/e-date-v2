@@ -4,31 +4,37 @@
       <v-col cols="12" md="6" offset-md="3">
         <v-card>
           <h3 class="titulo text-center">Iniciar sesión</h3>
-          <div v-if="validation == 0">
-            <v-text-field
-              v-model="user"
-              label="Usuario"
-              outlined
-              autofocus
-              @keyup.enter="changePhaseLogin()"
-            ></v-text-field>
-            <v-row>
-              <v-col class="footer-form" cols="10" offset="1">
-                  <router-link to="/register" class="primary--text font-weight-bold">Crear cuenta</router-link>
+          <transition name="slide-x-transition">
+            <div v-show="validation === false">
+              <v-text-field
+                v-model="user"
+                label="Usuario"
+                outlined
+                autofocus
+                @keyup.enter="changePhaseLogin()"
+              ></v-text-field>
+              <v-row>
+                <v-col class="footer-form" cols="10" offset="1">
+                  <router-link to="/register" class="primary--text font-weight-bold">Crear cuenta
+                  </router-link>
                   <v-btn
                     :right="true"
                     color="primary"
-                  >Siguiente</v-btn>
-              </v-col>
-            </v-row>
-          </div>
-          <div v-else-if="validation == 1">
-            <v-text-field
-              v-model="password"
-              label="Contraseña"
-              outlined
-            ></v-text-field>
-          </div>
+                  >Siguiente
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </div>
+          </transition>
+          <transition  name="slide-x-transition">
+            <div v-show="validation === true">
+              <v-text-field
+                v-model="password"
+                label="Contraseña"
+                outlined
+              ></v-text-field>
+            </div>
+          </transition>
         </v-card>
       </v-col>
     </v-row>
@@ -42,18 +48,18 @@ export default Vue.extend({
   name: 'Login',
   data() {
     return {
-        validation: '',
+        validation: false,
         user: '',
-        password: ''
+        password: '',
     }
   },
   methods: {
-    changePhaseLogin: function(userName : string = this.user): void {
+    changePhaseLogin: function(userName: string = this.user): void {
       // @ts-ignore
       this.$axios.get('/getUserName', userName)
           .then( (response: { data: any; }) => {
              response.data.find( (element: string) => {
-                 element == userName ? this.validation  = 1 : 0;
+                 element == userName ? this.validation  = true : false;
              })
           });
     }
