@@ -4,35 +4,48 @@
       <v-col cols="12" md="6" offset-md="3">
         <v-card>
           <h3 class="titulo text-center">Iniciar sesión</h3>
-          <transition name="slide-x-transition">
-            <div v-show="validation === false">
+          <div v-show="validation === false" class="container-login">
+            <v-text-field
+              v-model="user"
+              label="Usuario"
+              outlined
+              autofocus
+              @keyup.enter="changePhaseLogin()"
+            ></v-text-field>
+            <v-row>
+              <v-col class="footer-form" cols="10" offset="1">
+                <router-link to="/register" class="primary--text font-weight-bold">Crear cuenta
+                </router-link>
+                <v-btn
+                  :right="true"
+                  color="primary"
+                  @click="changePhaseLogin()"
+                >Siguiente
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+          <transition name="slide-x-reverse-transition">
+            <div v-show="validation === true" class="container-login">
               <v-text-field
-                v-model="user"
-                label="Usuario"
+                v-model="password"
+                label="Contraseña"
                 outlined
                 autofocus
                 @keyup.enter="changePhaseLogin()"
               ></v-text-field>
               <v-row>
                 <v-col class="footer-form" cols="10" offset="1">
-                  <router-link to="/register" class="primary--text font-weight-bold">Crear cuenta
+                  <router-link to="/login" class="primary--text font-weight-bold">
                   </router-link>
                   <v-btn
                     :right="true"
                     color="primary"
-                  >Siguiente
+                    @click="changePhaseLogin()"
+                  >Iniciar Sesión
                   </v-btn>
                 </v-col>
               </v-row>
-            </div>
-          </transition>
-          <transition  name="slide-x-transition">
-            <div v-show="validation === true">
-              <v-text-field
-                v-model="password"
-                label="Contraseña"
-                outlined
-              ></v-text-field>
             </div>
           </transition>
         </v-card>
@@ -62,7 +75,7 @@ export default Vue.extend({
                  element == userName ? this.validation  = true : false;
              })
           });
-    }
+    },
   },
 // @ts-ignore
   sockets: {
@@ -86,6 +99,10 @@ export default Vue.extend({
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .container-login {
+    position: relative;
   }
 }
 </style>
